@@ -1,6 +1,7 @@
 package main
 
 import (
+	"PathfinderToolset/character"
 	"fmt"
 	"github.com/urfave/cli/v2"
 	"log"
@@ -23,6 +24,33 @@ func init() {
 func commands() {
 	app.Commands = []*cli.Command {
 		{
+			Name: "new_character",
+			Aliases: []string{"nc", "new_char"},
+			Action: func(c *cli.Context) error {
+				fmt.Println("Choose your characters ancestry: ")
+				ancestries := character.AncestryList("ancestries")
+				character.PrintAncestryChoices(ancestries)
+				fmt.Print("> ")
+				var ancestryChoice int
+				 _, err := fmt.Scanf("%d", &ancestryChoice)
+				 if err != nil {
+				 	log.Fatal(err)
+				 }
+				for ancestryChoice > len(ancestries) {
+					fmt.Println("Please make a valid selection.")
+					fmt.Print("> ")
+					_, err = fmt.Scanf("%d", &ancestryChoice)
+					if err != nil {
+						log.Fatal(err)
+					}
+				}
+				ancestry := character.GetAncestryInfo(ancestries[ancestryChoice - 1], "ancestries")
+				character.PrintAncestryInfo(ancestry)
+
+				return nil
+			},
+		},
+		{
 			Name: "about",
 			Aliases: []string{},
 			Action: func(c *cli.Context) error {
@@ -34,14 +62,6 @@ func commands() {
 				fmt.Println("Conceived and Coded by Jeremy Cerise, February 2020")
 				fmt.Println("Version " + version)
 				fmt.Println("All Pathfinder Content used under the OGL")
-				return nil
-			},
-		},
-		{
-			Name: "new_character",
-			Aliases: []string{"nc", "new_char"},
-			Action: func(c *cli.Context) error {
-
 				return nil
 			},
 		},

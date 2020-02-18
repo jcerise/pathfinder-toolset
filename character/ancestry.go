@@ -1,6 +1,10 @@
 package character
 
 import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -14,15 +18,17 @@ type Heritage struct {
 }
 
 type Ancestry struct {
-	Name string
-	HitPoints int
-	Size string
-	Speed int
-	Boosts []string
-	Flaws []string
-	Languages []string
-	Features map[string]string
-	Heritages []Heritage
+	Name string `json:"name"`
+	Description string `json:"description"`
+	HitPoints int `json:"hitpoints"`
+	Size string `json:"size"`
+	Speed int `json:"speed"`
+	Boosts []string `json:"boosts"`
+	Flaws []string `json:"flaws"`
+	Languages []string `json:"languages"`
+	Features map[string]string `json:"features"`
+	Heritages []Heritage `json:"heritages"`
+	Feats []Feat `json:"feats"`
 }
 
 // ancestryList returns a list of all available ancestries to choose from when creating a character, or looking up
@@ -47,4 +53,35 @@ func AncestryList(ancestryDir string) []string {
 	}
 
 	return ancestryNames
+}
+
+func PrintAncestryChoices(ancestryNames []string) {
+	for i := range ancestryNames {
+		fmt.Printf("%d. %s\n", i + 1, ancestryNames[i])
+	}
+}
+
+func GetAncestryInfo(ancestryName, ancestryDir string) Ancestry {
+	fileName := ancestryDir + "/" + ancestryName + ".ancestry"
+	ancestryFile, err := ioutil.ReadFile(fileName)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	ancestryData := Ancestry{}
+	err = json.Unmarshal(ancestryFile, &ancestryData)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return ancestryData
+}
+
+func PrintAncestryInfo(ancestry Ancestry) {
+	fmt.Printf("%-5s | HP: %-5d | Size: %-5s | Speed: %-5d\n", ancestry.Name, ancestry.HitPoints, ancestry.Size, ancestry.Speed)
+	fmt.Println("----------------------------------------")
+	fmt.Println(ancestry.Description)
+	fmt.Println()
 }

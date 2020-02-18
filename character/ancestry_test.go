@@ -23,6 +23,21 @@ func TestAncestryList(t *testing.T) {
 	}
 }
 
+func TestPrintAncestryInfo(t *testing.T) {
+	ancestryDir := "../ancestries"
+	ancestryName := "Dwarf"
+
+	dwarfAncestry := GetAncestryInfo(ancestryName, ancestryDir)
+
+	if dwarfAncestry.Name != "Dwarf" {
+		t.Errorf("ancestry did not properly load: wanted name=%s, got name=%s", "Dwarf", dwarfAncestry.Name)
+	}
+
+	if len(dwarfAncestry.Heritages) != 5 {
+		t.Errorf("heritages not properly populated: wanted %d, got %d", 5, len(dwarfAncestry.Heritages))
+	}
+}
+
 // contains checks a given slice to see if contains the specified key. Returns true if key is found,
 // false otherwise
 func contains(key string, arr []string) bool {
