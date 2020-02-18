@@ -1,0 +1,58 @@
+{
+	"name": "Dwarf",
+	"description": "Dwarves have a well-earned reputation as a stoic and stern people, ensconced in within citadels and citites carved from solid rock.",
+	"hitpoints": 10,
+	"size": "medium",
+	"speed": 20,
+	"boosts": [
+		"constitution",
+		"wisdom",
+		"free"
+	],
+	"flaws": [
+		"charisma"
+	],
+	"languages": [
+		"common",
+		"dwarven",
+		"int-mod"
+	],
+	"features": {
+		"darkvision": "You can see in darkness and dim light just as well as you can see in bright light, though your vision in darkness is in black and white"
+	},
+	"heritages": {
+		"Ancient-blooded dwarf": {
+			"description": "Dwarven heroes of old could shrug off their enemies magic, and some of that resistance manifests in you.",
+			"ability": "Triggered before rolling on a saving throw, you gain a +1 bonus on that saving throw."
+		},
+		"Death Warden Dwarf": {
+			"description": "Your ancestors have been tomb guardians for generations, and the power they cultivated to ward off necromancy has passed on to you.",
+			"ability": "If you roll a success on a saving throw against a necromancy effect, you get a critical success instead."
+		},
+		"Forge Dwarf": {
+			"description": "You have a remarkable adaptation to hot environments from ancestors who inhabited blazing deserts or volcanic chambers beneath the earth.",
+			"ability": "Granted fire resistance equal to half your level (min. 1) and you treat environmental heat effects as one step less extreme."
+		},
+		"Rock Dwarf": {
+			"description": "Your ancestors lived and worked among the great ancient stones of the mountains or the depths of the earth.",
+			"ability": "You gain a +2 circumstance bonus to your fortitude or reflex DC against attempts to shove or trip you. In addition, if any effect would force you to move 10 feet or more, you move half that distance instead."
+		},
+		"Strong-blooded Dwarf": {
+			"description": "Your blood runs hearty and strong, and you can shake off toxins.",
+			"ability": "You gain poison resistance equal to half your level, and each successful saving through against poison affliction reduces its stage by 2 (3 for a critical success), or 1 (2 for critical success) for virulent poisons."
+		}
+	},
+	"feats": {
+		"Dwarven Lore": {},
+		"Dwaven Weapon Familiarity": {},
+		"Rock Runner": {},
+		"StoneCunning": {},
+		"Unburdened Iron": {},
+		"Vengeful Hatred": {},
+		"Boulder Roll": {},
+		"Dwarven Weapon Cunning": {},
+		"Mountains Stoutness": {},
+		"Stonewalker": {},
+		"Dwarven Weapon Expertise": {}
+	}
+}

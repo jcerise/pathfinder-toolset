@@ -10,6 +10,7 @@ type Background struct {
 
 type Class struct {
 	Name string
+	Description string
 	KeyAbility string
 	HitPoints int
 	Perception string
@@ -40,7 +41,7 @@ type Skill struct {
 type Feat struct {
 	Name string
 	Level int
-	Class string
+	Prerequisite string
 	Types []string
 	Description string
 	ActionType string

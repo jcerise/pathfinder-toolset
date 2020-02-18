@@ -6,6 +6,13 @@ import (
 	"strings"
 )
 
+type Heritage struct {
+	Name string
+	Ancestry Ancestry
+	Description string
+	Ability string
+}
+
 type Ancestry struct {
 	Name string
 	HitPoints int
@@ -14,7 +21,8 @@ type Ancestry struct {
 	Boosts []string
 	Flaws []string
 	Languages []string
-	Features []string
+	Features map[string]string
+	Heritages []Heritage
 }
 
 // ancestryList returns a list of all available ancestries to choose from when creating a character, or looking up
