@@ -1,5 +1,10 @@
 package character
 
+import (
+	"PathfinderToolset/cli_utils"
+	"fmt"
+)
+
 type Background struct {
 	Name string
 	Description string
@@ -64,6 +69,31 @@ type Character struct {
 
 // Create walks the user through creating a new character, by asking the user  to provide information about the
 // character they would like to create
-func (c *Character) Create() {
+func Create() {
+	var newCharacter Character
+	ancestry := AncestrySelector()
 
+	newCharacter.Ancestry = ancestry
+}
+
+func AncestrySelector() Ancestry {
+	ancestryChosen := false
+	var ancestry Ancestry
+	for !ancestryChosen {
+		ancestries := AncestryList("ancestries")
+		ancestryChoice := cli_utils.ListChoice("Choose your characters ancestry: ", ancestries)
+
+		curAncestry := GetAncestryInfo(ancestries[ancestryChoice - 1], "ancestries")
+		PrintAncestryInfo(curAncestry)
+		fmt.Println()
+		decision := cli_utils.Confirmation("Would you like to choose this ancestry?", true)
+
+		if decision {
+			ancestryChosen = true
+			ancestry = curAncestry
+		} else {
+			ancestryChosen = false
+		}
+	}
+	return ancestry
 }

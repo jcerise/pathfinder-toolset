@@ -1,6 +1,6 @@
 {
 	"name": "Dwarf",
-	"description": "Dwarves have a well-earned reputation as a stoic and stern people, ensconced in within citadels and citites carved from solid rock.",
+	"description": "Dwarves have a well-earned reputation as a stoic and stern people, ensconced within citadels and citites carved from solid rock.",
 	"hitpoints": 10,
 	"size": "medium",
 	"speed": 20,

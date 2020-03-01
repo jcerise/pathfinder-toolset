@@ -27,26 +27,7 @@ func commands() {
 			Name: "new_character",
 			Aliases: []string{"nc", "new_char"},
 			Action: func(c *cli.Context) error {
-				fmt.Println("Choose your characters ancestry: ")
-				ancestries := character.AncestryList("ancestries")
-				character.PrintAncestryChoices(ancestries)
-				fmt.Print("> ")
-				var ancestryChoice int
-				 _, err := fmt.Scanf("%d", &ancestryChoice)
-				 if err != nil {
-				 	log.Fatal(err)
-				 }
-				for ancestryChoice > len(ancestries) {
-					fmt.Println("Please make a valid selection.")
-					fmt.Print("> ")
-					_, err = fmt.Scanf("%d", &ancestryChoice)
-					if err != nil {
-						log.Fatal(err)
-					}
-				}
-				ancestry := character.GetAncestryInfo(ancestries[ancestryChoice - 1], "ancestries")
-				character.PrintAncestryInfo(ancestry)
-
+				character.Create()
 				return nil
 			},
 		},

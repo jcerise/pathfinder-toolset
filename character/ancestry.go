@@ -55,12 +55,6 @@ func AncestryList(ancestryDir string) []string {
 	return ancestryNames
 }
 
-func PrintAncestryChoices(ancestryNames []string) {
-	for i := range ancestryNames {
-		fmt.Printf("%d. %s\n", i + 1, ancestryNames[i])
-	}
-}
-
 func GetAncestryInfo(ancestryName, ancestryDir string) Ancestry {
 	fileName := ancestryDir + "/" + ancestryName + ".ancestry"
 	ancestryFile, err := ioutil.ReadFile(fileName)
@@ -84,4 +78,13 @@ func PrintAncestryInfo(ancestry Ancestry) {
 	fmt.Println("----------------------------------------")
 	fmt.Println(ancestry.Description)
 	fmt.Println()
+	fmt.Printf("Boosts:    %s\n", ancestry.Boosts)
+	fmt.Printf("Flaws:     %s\n", ancestry.Flaws)
+	fmt.Printf("Languages: %s\n", ancestry.Languages)
+	fmt.Println()
+	fmt.Printf("Ancestry Features:\n")
+	for featureName, featureDesc := range ancestry.Features {
+		fmt.Printf("     %s: %s\n", featureName, featureDesc)
+	}
+
 }
